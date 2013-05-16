@@ -6,6 +6,8 @@
 
 class LunchMembers
   def self.shuffle(members)
-    return %w[foo bar baz hoge], %w[piyo fuga moge gori]
+    xs = members.shuffle
+    n = members.length / 2
+    return xs[0, n], xs[n, n]
   end
 end
