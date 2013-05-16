@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+require 'generate_hash'
+
 class TapTap
   BIZZARE_CHARACTERS = {
     phantom_blood:        %w[Jonathan Speedwagon Dio],
@@ -12,11 +15,8 @@ class TapTap
   }
 
   def self.method_foo(collection)
-    {}.tap do |hash|
-      collection.map do |k, v|
-        hash[k.to_sym] = v
-      end
-    end
+    GenerateHash.hash_from_keys_and_values(collection.keys.map(&:to_sym),
+                                           collection.values)
   end
 
   def self.method_bar(episodes)
