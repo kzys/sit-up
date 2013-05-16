@@ -20,16 +20,10 @@ class TapTap
   end
 
   def self.method_bar(episodes)
-    {}.tap do |result|
-      episodes.each do |episode|
-        characters = BIZZARE_CHARACTERS[episode]
-        result[episode] = [].tap do |character_array|
-          characters.each do |character|
-            r = character.downcase.to_sym
-            character_array.push r
-          end
-        end
-      end
+    pairs = episodes.map do |episode|
+      [ episode, BIZZARE_CHARACTERS[episode].map(&:downcase).map(&:to_sym) ]
     end
+
+    GenerateHash.hash_from_pairs(pairs)
   end
 end
