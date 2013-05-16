@@ -4,16 +4,8 @@ class EachAndInclude
   #   collection.conditions should be Array of Symbol or nil
   # target : finding target (should be Symbol)
   def self.method_foo(collection, target)
-    result = []
-
-    collection.each do |item|
-      if !item.conditions
-        result << item
-      elsif item.conditions.include?(target)
-        result << item
-      end
+    collection.select do |item|
+      ! item.conditions or item.conditions.include?(target)
     end
-
-    result
   end
 end
