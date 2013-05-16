@@ -22,17 +22,12 @@ describe LunchMembers do
   describe 'shuffle should be random' do
     members = %w[foo bar baz hoge piyo fuga moge gori]
 
-    same = 0
-
-    100.times do
+    same_result = (0...100).reduce(0) do |acc, n|
       (a1, b1) = LunchMembers.shuffle(members)
       (a2, b2) = LunchMembers.shuffle(members)
-
-      if a1 == a2 and b1 == b2
-        same += 1
-      end
+      acc + if a1 == a2 and b1 == b2 then 1 else 0 end
     end
 
-    same.should < 50
+    same_result.should < 50
   end
 end
