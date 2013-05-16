@@ -29,7 +29,7 @@ describe EachAndInclude do
   end
 
   describe '.method_foo' do
-    subject { EachAndInclude.method_foo(collection, :foo) }
+    subject { EachAndInclude.select_if_condition_includes(collection, :foo) }
     it { should == [mock_with_nil_condition, mock_with_foo_bar_condition] }
   end
 end
